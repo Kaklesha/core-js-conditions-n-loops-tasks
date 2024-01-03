@@ -21,10 +21,16 @@
  *  0  => true
  *  -5 => false
  */
-function isPositive(/* number */) {
-  throw new Error('Not implemented');
+function isPositive(number) {
+  let result = false;
+  if (number >= 0) {
+    result = true;
+  } else {
+    result = false;
+  }
+  console.debug(`number is ${number} and result is ${result}`);
+  return result;
 }
-
 /**
  * Returns the maximum of three numbers without using Array and Math classes methods.
  *
@@ -38,8 +44,19 @@ function isPositive(/* number */) {
  *  -5, 0, 5      => 5
  *  -0.1, 0, 0.2  => 0.2
  */
-function getMaxNumber(/* a, b, c */) {
-  throw new Error('Not implemented');
+function getMaxNumber(a, b, c) {
+  let result = a;
+  if (a > b && a > c) {
+    result = a;
+  }
+  if (b > a && b > c) {
+    result = b;
+  }
+  if (c > a && c > b) {
+    result = c;
+  }
+  console.debug(`a is ${a} and b is ${b} and c is ${c} result ${result}`);
+  return result;
 }
 
 /**
@@ -62,6 +79,18 @@ function getMaxNumber(/* a, b, c */) {
  */
 function canQueenCaptureKing(/* queen, king */) {
   throw new Error('Not implemented');
+  // const rowDifference = Math.abs(queen.row - king.row);
+  // const columnDifference = Math.abs(queen.column - king.column);
+
+  // if (rowDifference === 0 || columnDifference === 0) {
+  //   return true; // Queen and king are in the same row or column
+  // }
+
+  // if (rowDifference === 1 && columnDifference === 1) {
+  //   return true; // Queen and king are diagonally adjacent
+  // }
+
+  // return false; // Queen cannot capture the king
 }
 
 /**
@@ -82,8 +111,38 @@ function canQueenCaptureKing(/* queen, king */) {
  *  2, 2, 5   => false
  *  3, 0, 3   => false
  */
-function isIsoscelesTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isIsoscelesTriangle(a, b, c) {
+  const dump = [a, b, c];
+  let subvariable = 0;
+  let sameCount = 0;
+  let result = a;
+  if (a > b && a > c) {
+    result = a;
+  }
+  if (b > a && b > c) {
+    result = b;
+  }
+  if (c > a && c > b) {
+    result = c;
+  }
+  for (let index = 0; index < dump.length; index += 1) {
+    for (let elem = 0; elem < dump.length; elem += 1) {
+      if (dump[index] === dump[elem]) {
+        sameCount += 1;
+        subvariable = dump[index];
+      }
+    }
+    if (sameCount === 2) break;
+    sameCount = 0;
+  }
+  console.debug(
+    `a is ${a} and b is ${b} and c is ${c} result ${result} sama is ${sameCount}`
+  );
+  if (sameCount <= 1) return false;
+  if (sameCount > 2) return false;
+  result -= 1;
+  if (result === subvariable) return true;
+  return false;
 }
 
 /**
