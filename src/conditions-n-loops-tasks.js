@@ -28,7 +28,6 @@ function isPositive(number) {
   } else {
     result = false;
   }
-  console.debug(`number is ${number} and result is ${result}`);
   return result;
 }
 /**
@@ -55,7 +54,6 @@ function getMaxNumber(a, b, c) {
   if (c > a && c > b) {
     result = c;
   }
-  console.debug(`a is ${a} and b is ${b} and c is ${c} result ${result}`);
   return result;
 }
 
@@ -135,9 +133,6 @@ function isIsoscelesTriangle(a, b, c) {
     if (sameCount === 2) break;
     sameCount = 0;
   }
-  console.debug(
-    `a is ${a} and b is ${b} and c is ${c} result ${result} sama is ${sameCount}`
-  );
   if (sameCount <= 1) return false;
   if (sameCount > 2) return false;
   result -= 1;
