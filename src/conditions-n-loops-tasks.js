@@ -475,8 +475,34 @@ function sortByAsc(arr) {
  *  '012345', 3 => '024135' => '043215' => '031425'
  *  'qwerty', 3 => 'qetwry' => 'qtrewy' => 'qrwtey'
  */
-function shuffleChar(/* str, iterations */) {
-  throw new Error('Not implemented');
+function shuffleChar(str, iterations) {
+  let leftvariable = '';
+  let rightvariable = '';
+  let sumvariable = str;
+  let tempCountIter = iterations;
+  for (let elem = 0; elem < tempCountIter; elem += 1) {
+    leftvariable = '';
+    rightvariable = '';
+    for (let index = 0; index < str.length; index += 1) {
+      if (index % 2 === 0) {
+        leftvariable += sumvariable[index];
+      } else {
+        rightvariable += sumvariable[index];
+      }
+    }
+    sumvariable = leftvariable + rightvariable;
+
+    if (elem < 100) {
+      console.debug(`  iter is ${elem} - ${sumvariable}`);
+    }
+    if (str === sumvariable) {
+      tempCountIter = Math.round(
+        (elem + 1) * ((tempCountIter / (elem + 1)) % 1)
+      );
+      elem = -1;
+    }
+  }
+  return sumvariable;
 }
 
 /**
