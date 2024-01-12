@@ -479,8 +479,9 @@ function shuffleChar(str, iterations) {
   let leftvariable = '';
   let rightvariable = '';
   let sumvariable = str;
-  let tempCountIter = iterations;
-  for (let elem = 0; elem < tempCountIter; elem += 1) {
+  let searchIndex = 0;
+  const tempArray = [];
+  for (let elem = 0; elem < iterations; elem += 1) {
     leftvariable = '';
     rightvariable = '';
     for (let index = 0; index < str.length; index += 1) {
@@ -491,15 +492,10 @@ function shuffleChar(str, iterations) {
       }
     }
     sumvariable = leftvariable + rightvariable;
-
-    if (elem < 100) {
-      console.debug(`  iter is ${elem} - ${sumvariable}`);
-    }
+    tempArray[elem] = sumvariable;
     if (str === sumvariable) {
-      tempCountIter = Math.round(
-        (elem + 1) * ((tempCountIter / (elem + 1)) % 1)
-      );
-      elem = -1;
+      searchIndex = Math.round((elem + 1) * ((iterations / (elem + 1)) % 1));
+      return tempArray[searchIndex - 1];
     }
   }
   return sumvariable;
