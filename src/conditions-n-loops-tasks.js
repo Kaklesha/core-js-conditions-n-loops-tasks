@@ -437,18 +437,32 @@ function rotateMatrix(/* matrix */) {
  *  [2, 9, 5, 9]    => [2, 5, 9, 9]
  *  [-2, 9, 5, -3]  => [-3, -2, 5, 9]
  */
-function sortByAsc(arr) {
-  const subarr = arr;
-  for (let j = subarr.length - 1; j > 0; j -= 1) {
-    for (let i = 0; i < j; i += 1) {
-      if (subarr[i] > subarr[i + 1]) {
-        const temp = subarr[i];
-        subarr[i] = arr[i + 1];
-        subarr[i + 1] = temp;
+function sortByAsc(array) {
+  const partition = (arr, start, end) => {
+    const pivot = arr[end];
+    let i = start;
+    const subarr = arr;
+
+    for (let j = start; j <= end - 1; j += 1) {
+      if (subarr[j] <= pivot) {
+        [subarr[i], subarr[j]] = [subarr[j], subarr[i]];
+        i += 1;
       }
     }
-  }
-  return subarr;
+
+    [subarr[i], subarr[end]] = [subarr[end], subarr[i]];
+    return i;
+  };
+
+  const quickSort = (arr, start, end) => {
+    if (start < end) {
+      const pi = partition(arr, start, end);
+
+      quickSort(arr, start, pi - 1);
+      quickSort(arr, pi + 1, end);
+    }
+  };
+  return quickSort(array, 0, array.length - 1);
 }
 /**
  * Shuffles characters in a string so that the characters with an odd index are moved to the end of the string at each iteration.
