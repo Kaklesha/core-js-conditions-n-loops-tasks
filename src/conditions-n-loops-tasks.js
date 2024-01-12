@@ -74,21 +74,13 @@ function getMaxNumber(a, b, c) {
  * {x: 2, y: 1}, {x: 2, y: 8} => true
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  * {x: 1, y: 1}, {x: 2, y: 8} => false
+ * ({ x: 1, y: 1 }, { x: 5, y: 5 }),
  */
-function canQueenCaptureKing(/* queen, king */) {
-  throw new Error('Not implemented');
-  // const rowDifference = Math.abs(queen.row - king.row);
-  // const columnDifference = Math.abs(queen.column - king.column);
 
-  // if (rowDifference === 0 || columnDifference === 0) {
-  //   return true; // Queen and king are in the same row or column
-  // }
-
-  // if (rowDifference === 1 && columnDifference === 1) {
-  //   return true; // Queen and king are diagonally adjacent
-  // }
-
-  // return false; // Queen cannot capture the king
+function canQueenCaptureKing(queen, king) {
+  if (Math.abs(king.x - queen.x) === Math.abs(king.y - queen.y)) return true;
+  if (king.x === queen.x || king.y === queen.y) return true;
+  return false;
 }
 
 /**
